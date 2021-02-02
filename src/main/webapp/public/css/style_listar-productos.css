@@ -1,0 +1,31 @@
+img {
+	width: 50%;
+	height: 50%;
+	
+}
+
+.btneliminar{
+	color: yellow;
+	font-weight: bold;
+	
+}
+
+.btneliminar:hover{
+	text-decoration: none;
+	color: yellow;
+}
+
+a:hover{
+	text-decoration: none;
+	color: yellow;
+}
+
+.btnagregar{
+	color: black;
+	font-weight: bold;	
+}
+
+.btnagregar:hover{
+	color: black;
+	text-decoration: none;
+}

@@ -1,6 +1,7 @@
 package com.tiendavirtual.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,14 +30,13 @@ public class ProductosEntityService implements IProductosService {
 
 	@Override
 	public int save(ProductosEntity pe) {
-		// TODO Auto-generated method stub
+	
 		return 0;
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		iProductos.deleteById(id);
 	}
 
 }

@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet type="text/css" href="${pageContext.request.contextPath}/public/css/prueba.css">
 </head>
 <body>
 	<h1>Vista Index JSP</h1>
@@ -16,5 +17,7 @@
 	</form>
 	
 	<a href="/listaruser">Mostrar usuarios</a>
+	<a href="/productos">Mostrar productos</a>
+	
 </body>
 </html>
