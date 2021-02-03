@@ -3,7 +3,14 @@ package com.tiendavirtual.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tiendavirtual.interfaceService.IProductosService;
 import com.tiendavirtual.interfaces.IProductos;
@@ -29,9 +36,9 @@ public class ProductosEntityService implements IProductosService {
 	}
 
 	@Override
-	public int save(ProductosEntity pe) {
-	
-		return 0;
+	@Transactional
+	public void save(ProductosEntity pe) {
+		iProductos.save(pe);
 	}
 
 	@Override

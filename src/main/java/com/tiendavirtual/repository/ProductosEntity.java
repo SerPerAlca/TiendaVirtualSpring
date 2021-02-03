@@ -10,29 +10,44 @@ import javax.persistence.Table;
 public class ProductosEntity {
 	
 	@Id
-	@Column(name="ID_PRODUCTO")
+	@Column(name="id_producto")
 	private int id;
 	
-	@Column(name="NOMBRE_PRODUCTO")
+	@Column(name="nombre_producto")
 	private String nombre;
 	
-	@Column(name="PRECIO")
+	@Column(name="precio")
 	private double precio;
 	
-	@Column(name="DESCRIPCION")
+	@Column(name="descripcion")
 	private String descripcion;
 	
-	@Column(name="URL_IMAGEN")
+	@Column(name="url_imagen")
 	private String urlImagen;
 	
+	@Column(name="categoria")
+	private String categoria;
+	
+	public String getCategoria() {
+		return categoria;
+	}
+
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+
 	public ProductosEntity() {}
 	
-	
-	public ProductosEntity(String nombre, double precio, String descripcion, String urlImagen) {
+
+	public ProductosEntity(String nombre, double precio, String descripcion, String urlImagen, String categoria) {
+
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descripcion = descripcion;
 		this.urlImagen = urlImagen;
+		this.categoria = categoria;
 	}
 
 
@@ -80,8 +95,11 @@ public class ProductosEntity {
 	@Override
 	public String toString() {
 		return "ProductosEntity [nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion
-				+ ", urlImagen=" + urlImagen + "]";
+				+ ", urlImagen=" + urlImagen + ", categoria=" + categoria + "]";
 	}
+
+
+	
 	
 	
 }

@@ -13,7 +13,7 @@ public interface IProductosService {
 
 	public List<ProductosEntity> findAll();
 	public ProductosEntity findByName();
-	public int save(ProductosEntity pe);
+	public void save(ProductosEntity pe);
 	public void delete(int id);
 	//public void delete(String nombre);
 }

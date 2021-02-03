@@ -19,6 +19,7 @@
 				<th>ID</th>
 				<th>Nombre</th>
 				<th>Precio</th>
+				<th>Categoría</th>
 				<th>Descripcion</th>
 				<th>Imagen</th>
 				<th>Editar / Eliminar </th>
@@ -30,6 +31,7 @@
 					<td>${product.id}</td>
 					<td>${product.nombre}</td>
 					<td>${product.precio}</td>
+					<td>${product.categoria}</td>
 					<td>${product.descripcion}</td>
 					<td><img src="${pageContext.request.contextPath}${product.urlImagen}" /></td>
 					<td><button type="button" class="btn btn-danger"><a class="btneliminar" href="/eliminarproducto/${product.id}">Eliminar</a></button></td>
