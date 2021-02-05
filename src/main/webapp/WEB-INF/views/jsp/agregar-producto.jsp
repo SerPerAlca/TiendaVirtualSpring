@@ -37,7 +37,7 @@
 					</div>
 					<div class="form-group">
 						<p><h5>Agregar Imagen</h5></p>
-						<p><form:input type="file" path="urlImagen"/></p>
+						<p><form:input type="file" path="imagen"/></p>
 					</div>			
 				</div>
 				<div class="card-footer">

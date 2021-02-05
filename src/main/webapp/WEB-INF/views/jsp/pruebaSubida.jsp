@@ -11,7 +11,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="col-sm-6">
-			<form:form action="saveprueba" method="POST" enctype="multipart/form-data">
+			<form:form action="saveprueba" modelAttribute="produc" method="POST" enctype="multipart/form-data">
 				<div class="card-header">
 					<h3>Subir Imagen</h3>
 				</div>

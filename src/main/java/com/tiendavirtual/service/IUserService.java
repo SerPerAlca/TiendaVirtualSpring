@@ -1,11 +1,11 @@
-package com.tiendavirtual.interfaceService;
+package com.tiendavirtual.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.tiendavirtual.repository.UserEntity;
+import com.tiendavirtual.repository.entity.UserEntity;
 
 @Service
 public interface IUserService {

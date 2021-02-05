@@ -1,4 +1,4 @@
-package com.tiendavirtual.repository;
+package com.tiendavirtual.repository.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

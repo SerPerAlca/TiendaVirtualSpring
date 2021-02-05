@@ -1,4 +1,4 @@
-package com.tiendavirtual.repository;
+package com.tiendavirtual.repository.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
