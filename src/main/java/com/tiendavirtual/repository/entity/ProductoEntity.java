@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="productos")
-public class ProductosEntity {
+public class ProductoEntity {
 	
 	@Id
 	@Column(name="id_producto")
@@ -38,10 +38,10 @@ public class ProductosEntity {
 	}
 
 
-	public ProductosEntity() {}
+	public ProductoEntity() {}
 	
 
-	public ProductosEntity(String nombre, double precio, String descripcion, String urlImagen, String categoria) {
+	public ProductoEntity(String nombre, double precio, String descripcion, String urlImagen, String categoria) {
 
 		this.nombre = nombre;
 		this.precio = precio;

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.tiendavirtual.repository.mapper.ProductoEntityMapper;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tiendavirtual.repository.ProductosRepository;
-import com.tiendavirtual.repository.entity.ProductosEntity;
+import com.tiendavirtual.repository.entity.ProductoEntity;
 
 // capa de servicio
 /**
@@ -31,9 +32,15 @@ public class ProductosEntityService implements IProductosService {
 	
 	@Override
 	public List<Producto> findAll() {
+		List<Producto> productoDomain = new ArrayList<>();
+		List<ProductoEntity> productoEntity = new ArrayList<>();
 
-		return null;
-//		return (List<ProductosEntity>) productosRepository.findAll();
+		productoEntity= productosRepository.findAll();
+		for ( ProductoEntity entidad : productoEntity){
+			Producto producto = mapper.fromEntitytoDomain(entidad);
+			productoDomain.add(producto);
+		}
+		return productoDomain;
 	}
 
 	@Override
@@ -51,11 +58,11 @@ public class ProductosEntityService implements IProductosService {
 
 		try {
 			byte[] imagen = producto.getImagen();
-			Path rutaCompleta = Paths.get(rutaAbsoluta + "//"+ producto.getNombreImagen());
+			Path rutaCompleta = Paths.get(rutaAbsoluta + "//"+ producto.getUrlImagen());
 			Files.write(rutaCompleta,  imagen);
-			String url = "/public/images/" + producto.getNombreImagen();
+			String url = "/public/images/" + producto.getUrlImagen();
 
-			ProductosEntity productoEntity = mapper.fromDomainToEntity(producto);
+			ProductoEntity productoEntity = mapper.fromDomainToEntity(producto);
 			productoEntity.setUrlImagen(url);
 
 			productosRepository.save(productoEntity);

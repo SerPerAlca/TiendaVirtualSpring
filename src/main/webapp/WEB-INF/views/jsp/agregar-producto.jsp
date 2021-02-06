@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>      
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -25,13 +25,13 @@
 						<form:input path="precio"/>
 					</div>
 					<div class="form-group">
-						<p><label><h5>Descripción:</h5> </label></p>
+						<p><label><h5>DescripciÃ³n:</h5> </label></p>
 						<form:textarea path="descripcion"/>
 					</div>
 					<div class="form-group">
-						<p><h5>Categoría: </h5></p>
-						<p><h6>Telefonía</h6> <form:radiobutton path="categoria" value="telefonía"/>
-						<h6>Informática</h6> <form:radiobutton path="categoria" value="informática"/></p>
+						<p><h5>CategorÃ­a: </h5></p>
+						<p><h6>TelefonÃ­a</h6> <form:radiobutton path="categoria" value="telefonÃ­a"/>
+						<h6>InformÃ¡tica</h6> <form:radiobutton path="categoria" value="informÃ¡tica"/></p>
 						<p><h6>Imagen y Sonido</h6> <form:radiobutton path="categoria" value="imagenysonido"/>
 						<h6>Videojuegos</h6> <form:radiobutton path="categoria" value="videojuegos"/></p>
 					</div>

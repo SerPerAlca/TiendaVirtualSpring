@@ -15,15 +15,24 @@ public class ProductoDtoMapper {
         producto.setPrecio(dto.getPrecio());
         producto.setNombre(dto.getNombre());
         producto.setDescripcion(dto.getDescripcion());
-        producto.setNombreImagen(dto.getImagen().getOriginalFilename());
+        producto.setUrlImagen(dto.getImagen().getOriginalFilename());
 
         try {
             producto.setImagen(dto.getImagen().getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return producto;
+    }
+    public ProductoDto fromProductoToDto (Producto productoDomain){
+        ProductoDto productoDto = new ProductoDto();
+        productoDto.setNombre(productoDomain.getNombre());
+        productoDto.setPrecio(productoDomain.getPrecio());
+        productoDto.setDescripcion(productoDomain.getDescripcion());
+        productoDto.setCategoria(productoDomain.getCategoria());
+        productoDto.setUrlImagen(productoDomain.getUrlImagen());
+        productoDto.setId(productoDomain.getId());
+        return productoDto;
     }
 
 }

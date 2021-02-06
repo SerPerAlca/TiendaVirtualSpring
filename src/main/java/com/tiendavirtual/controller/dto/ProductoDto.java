@@ -4,11 +4,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ProductoDto {
 
+    private int id;
+
     private String nombre;
 
     private Double precio;
 
     private String descripcion;
+
+    private String urlImagen;
 
     private MultipartFile imagen;
 
@@ -16,6 +20,22 @@ public class ProductoDto {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
     public void setNombre(String nombre) {

@@ -2,17 +2,28 @@ package com.tiendavirtual.service.domain;
 
 public class Producto {
 
+    private int id;
+
     private String nombre;
 
     private Double precio;
 
     private String descripcion;
 
-    private String nombreImagen;
+    private String urlImagen;
 
     private byte[] imagen;
 
     private String categoria;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -38,12 +49,12 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getNombreImagen() {
-        return nombreImagen;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public void setNombreImagen(String nombreImagen) {
-        this.nombreImagen = nombreImagen;
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
     public byte[] getImagen() {
