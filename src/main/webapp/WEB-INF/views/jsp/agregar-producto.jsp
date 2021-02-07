@@ -11,7 +11,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="col-sm-6">
-			<form:form action="save" method="POST" modelAttribute="producto" enctype="multipart/form-data">
+			<form:form action="/productos" method="POST" modelAttribute="producto" enctype="multipart/form-data">
 				<div class="card-header">
 					<h3>Agregar Producto</h3>	
 				</div>

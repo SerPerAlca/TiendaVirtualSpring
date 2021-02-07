@@ -17,7 +17,7 @@
 	</form>
 	
 	<a href="/listaruser">Mostrar usuarios</a>
-	<a href="/productos">Mostrar productos</a>
+	<a href="/productos/list">Mostrar productos</a>
 	<a href="/subirimagen">Pagina de Prueba</a>
 	
 </body>

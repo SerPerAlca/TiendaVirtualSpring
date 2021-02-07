@@ -18,64 +18,76 @@ import com.tiendavirtual.repository.ProductosRepository;
 import com.tiendavirtual.repository.entity.ProductoEntity;
 
 // capa de servicio
+
 /**
  * TODO renombrar a ProductosService, 'entity' ahi no aporta informacion relevante, ademas, entity es informacion de la capa de persistencia
  */
 @Service
 public class ProductosEntityService implements IProductosService {
 
-	@Autowired
-	private ProductosRepository productosRepository;
+    @Autowired
+    private ProductosRepository productosRepository;
 
-	@Autowired
-	private ProductoEntityMapper mapper;
-	
-	@Override
-	public List<Producto> findAll() {
-		List<Producto> productoDomain = new ArrayList<>();
-		List<ProductoEntity> productoEntity = new ArrayList<>();
+    @Autowired
+    private ProductoEntityMapper mapper;
 
-		productoEntity= productosRepository.findAll();
-		for ( ProductoEntity entidad : productoEntity){
-			Producto producto = mapper.fromEntitytoDomain(entidad);
-			productoDomain.add(producto);
-		}
-		return productoDomain;
-	}
+    @Override
+    public List<Producto> findAll() {
+        List<Producto> productoDomain = new ArrayList<>();
+        List<ProductoEntity> productoEntity = new ArrayList<>();
 
-	@Override
-	public Producto findByName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        productoEntity = productosRepository.findAll();
+        for (ProductoEntity entidad : productoEntity) {
+            Producto producto = mapper.fromEntitytoDomain(entidad);
+            productoDomain.add(producto);
+        }
+        return productoDomain;
+    }
 
-	@Override
-	@Transactional
-	public void save(Producto producto) {
+    @Override
+    public Producto findByName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-		Path directorioImagen = Paths.get("src//main//webapp//public/images");
-		String rutaAbsoluta = directorioImagen.toFile().getAbsolutePath();
+    @Override
+    @Transactional
+    public void save(Producto producto) {
 
-		try {
-			byte[] imagen = producto.getImagen();
-			Path rutaCompleta = Paths.get(rutaAbsoluta + "//"+ producto.getUrlImagen());
-			Files.write(rutaCompleta,  imagen);
-			String url = "/public/images/" + producto.getUrlImagen();
+        Path directorioImagen = Paths.get("src//main//webapp//public/images");
+        String rutaAbsoluta = directorioImagen.toFile().getAbsolutePath();
 
-			ProductoEntity productoEntity = mapper.fromDomainToEntity(producto);
-			productoEntity.setUrlImagen(url);
+        try {
+            byte[] imagen = producto.getImagen();
+            Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + producto.getUrlImagen());
+            Files.write(rutaCompleta, imagen);
+            String url = "/public/images/" + producto.getUrlImagen();
 
-			productosRepository.save(productoEntity);
-			System.out.println("Registro guardado correctamente");
-		} catch(IOException e) {
-			e.printStackTrace();
-			System.out.println("No se ha podido almacenar archivo");
-		}
-	}
+            ProductoEntity productoEntity = mapper.fromDomainToEntity(producto);
+            productoEntity.setUrlImagen(url);
 
-	@Override
-	public void delete(int id) {
-		productosRepository.deleteById(id);
-	}
+            productosRepository.save(productoEntity);
+            System.out.println("Registro guardado correctamente");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("No se ha podido almacenar archivo");
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        productosRepository.deleteById(id);
+    }
 
 }
+
+    public Producto findById(int id) {
+        Producto producto = new Producto();
+        ProductoEntity productoEntity = new ProductoEntity();
+
+        productoEntity = productosRepository.findById(id).get();
+        producto = mapper.fromEntitytoDomain(productoEntity);
+
+        return producto;
+
+    }
