@@ -21,6 +21,7 @@ public class ProductoController {
     @Autowired
     private ProductoDtoMapper mapper;
 
+
     @RequestMapping(value="/productos/list", method = RequestMethod.GET)
     public String listarProductos( Model model) {
         List<Producto> productoDomain = productosService.findAll();
@@ -33,7 +34,7 @@ public class ProductoController {
         return "productos";
     }
 
-    @RequestMapping(value="productos/{id}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/productoeliminado/{id}", method=RequestMethod.GET)
     public String delete(@PathVariable int id) {
         productosService.delete(id);
         return "redirect:/productos/list";
@@ -46,10 +47,29 @@ public class ProductoController {
     }
 
     @RequestMapping(value="/productos", method= RequestMethod.POST)
-    public String save(@ModelAttribute("producto") ProductoDto productoDto) {
+    public String save(@ModelAttribute("product") ProductoDto productoDto) {
 
         Producto producto = mapper.fromDtoToDomain(productoDto);
 
+        productosService.save(producto);
+
+        return "redirect:/productos/list";
+    }
+
+    @RequestMapping(value="/edicionado/{id}", method= RequestMethod.GET)
+    public String editarProducto (@PathVariable int id, Model model){
+        ProductoDto productoDto = new ProductoDto();
+        Producto producto = new Producto();
+        producto = productosService.findById(id);
+
+        productoDto = mapper.fromProductoToDto(producto);
+        model.addAttribute("producto", productoDto);
+
+        return "editar-producto";
+    }
+    @RequestMapping(value="/productos", method= RequestMethod.PUT)
+    public String update(@ModelAttribute("producto") ProductoDto productoDto){
+        Producto producto = mapper.fromDtoToDomain(productoDto);
         productosService.save(producto);
 
         return "redirect:/productos/list";

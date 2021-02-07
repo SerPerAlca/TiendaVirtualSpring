@@ -23,7 +23,8 @@
 				<th>Categoría</th>
 				<th>Descripcion</th>
 				<th>Imagen</th>
-				<th>Editar / Eliminar </th>
+				<th>Eliminar </th>
+				<th> Editar </th>
 			</tr>
 		</thead>	
 		<tbody>
@@ -35,7 +36,8 @@
 					<td>${product.categoria}</td>
 					<td>${product.descripcion}</td>
 					<td><img src="${pageContext.request.contextPath}${product.urlImagen}" /></td>
-					<td><button type="button" class="btn btn-danger"><a class="btneliminar" href="productos/${product.id}">Eliminar</a></button></td>
+					<td><button type="button" class="btn btn-danger"><a class="btneliminar" href="/productoeliminado/${product.id}">Eliminar</a></button></td>
+					<td><button type="button" class="btn btn-warning"><a class="btneliminar" href="/edicionado/${product.id}">Editar</a></button></td>
 				</tr>
 		</tbody>
 			</c:forEach>

@@ -23,7 +23,7 @@ import com.tiendavirtual.repository.entity.ProductoEntity;
  * TODO renombrar a ProductosService, 'entity' ahi no aporta informacion relevante, ademas, entity es informacion de la capa de persistencia
  */
 @Service
-public class ProductosEntityService implements IProductosService {
+public class ProductosService implements IProductosService {
 
     @Autowired
     private ProductosRepository productosRepository;
@@ -79,7 +79,6 @@ public class ProductosEntityService implements IProductosService {
         productosRepository.deleteById(id);
     }
 
-}
 
     public Producto findById(int id) {
         Producto producto = new Producto();
@@ -91,3 +90,18 @@ public class ProductosEntityService implements IProductosService {
         return producto;
 
     }
+
+    @Override
+    public void edit(Producto producto) {
+       int id = producto.getId();
+       Producto product = findById(id);
+       product.setNombre(producto.getNombre());
+       product.setPrecio(producto.getPrecio());
+       product.setDescripcion(producto.getDescripcion());
+       product.setCategoria(producto.getCategoria());
+       product.setUrlImagen(producto.getUrlImagen());
+       product.setImagen(producto.getImagen());
+       save(product);
+
+    }
+}

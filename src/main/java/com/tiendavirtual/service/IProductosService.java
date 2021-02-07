@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IProductosService {
 
-	/*
-	 * TODO 'public' es redundante, el IDE lo marca en gris. Por defecto en una interfaz, un metodo ya es publico sin necesidad de informarlo
-	 */
+
 
 	List<Producto>  findAll();
 	Producto findByName();
-	void save(Producto pe);
+	void save(Producto producto);
+	Producto findById(int id);
+	void edit(Producto producto);
 
 	void delete(int id);
 
