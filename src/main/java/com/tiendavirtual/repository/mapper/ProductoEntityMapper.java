@@ -17,6 +17,16 @@ public class ProductoEntityMapper {
         return entity;
     }
 
+    public ProductoEntity fromDomainToEntitySinImagen(Producto domain) {
+        ProductoEntity entity = new ProductoEntity();
+        entity.setNombre(domain.getNombre());
+        entity.setCategoria(domain.getCategoria());
+        entity.setDescripcion(domain.getDescripcion());
+        entity.setPrecio(domain.getPrecio());
+        entity.setUrlImagen(domain.getUrlImagen());
+        return entity;
+    }
+
     public Producto fromEntitytoDomain(ProductoEntity productoEntity){
         Producto producto = new Producto();
         producto.setNombre(productoEntity.getNombre());

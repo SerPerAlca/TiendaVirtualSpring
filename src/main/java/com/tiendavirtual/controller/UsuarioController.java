@@ -24,4 +24,16 @@ public class UsuarioController {
 		return "listar-usuarios";
 	}
 
+
+
+	@RequestMapping(value="/registro/empleado", method= RequestMethod.GET)
+	public String registroEmpleado(){
+		return "registroEmpleado";
+	}
+
+	@RequestMapping(value="/registro/cliente", method= RequestMethod.GET)
+	public String registroCliente(){
+		return "registroCliente";
+	}
+
 }

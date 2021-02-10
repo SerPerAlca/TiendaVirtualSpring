@@ -73,6 +73,17 @@ public class ProductosService implements IProductosService {
             System.out.println("No se ha podido almacenar archivo");
         }
     }
+    @Override
+    public void saveSinImagen(Producto producto) {
+        ProductoEntity productoEntity = mapper.fromDomainToEntity(producto);
+        try {
+            productosRepository.save(productoEntity);
+            System.out.println("Salvado sin imagen");
+        }catch (Exception e){
+            System.out.println("Error al intentar salvar sin imagen");
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void delete(int id) {
@@ -100,8 +111,13 @@ public class ProductosService implements IProductosService {
        product.setDescripcion(producto.getDescripcion());
        product.setCategoria(producto.getCategoria());
        product.setUrlImagen(producto.getUrlImagen());
-       product.setImagen(producto.getImagen());
+       if (producto.getImagen() == null){
+           saveSinImagen(product);
+       }else
        save(product);
+       }
 
-    }
+
+
+
 }

@@ -18,6 +18,7 @@ public class ProductoDto {
 
     private String categoria;
 
+
     public String getNombre() {
         return nombre;
     }

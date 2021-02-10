@@ -18,6 +18,7 @@ public interface IProductosService {
 	Producto findById(int id);
 	void edit(Producto producto);
 
+	void saveSinImagen(Producto producto);
 	void delete(int id);
 
 }

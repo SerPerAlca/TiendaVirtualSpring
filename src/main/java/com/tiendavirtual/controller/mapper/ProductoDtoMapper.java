@@ -24,6 +24,14 @@ public class ProductoDtoMapper {
         }
         return producto;
     }
+    public Producto fromDtoToDomainWhitoutImage(ProductoDto dto){
+        Producto producto = new Producto();
+        producto.setCategoria(dto.getCategoria());
+        producto.setPrecio(dto.getPrecio());
+        producto.setNombre(dto.getNombre());
+        producto.setDescripcion(dto.getDescripcion());
+        return producto;
+    }
     public ProductoDto fromProductoToDto (Producto productoDomain){
         ProductoDto productoDto = new ProductoDto();
         productoDto.setNombre(productoDomain.getNombre());

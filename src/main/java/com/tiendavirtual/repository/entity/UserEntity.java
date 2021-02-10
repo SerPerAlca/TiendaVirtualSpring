@@ -21,17 +21,27 @@ public class UserEntity {
 	 
 	 @Column(name="email_usuario")
 	 private String email;
-	 
-	 
+
+	 @Column(name="contrasenia")
+	 private String password;
+
 	 public UserEntity() {}
 	 
 	 
-	 public UserEntity(String nombre, String apellidos, String email) {
+	 public UserEntity(String nombre, String apellidos, String email, String password) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
+		this.password = password;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public int getId() {
 	        return id;

@@ -20,6 +20,17 @@ a:hover{
 	color: yellow;
 }
 
+.btneditar{
+    color: red;
+    font-weight: bold;
+
+}
+
+.btneditar:hover{
+    text-decoration: none;
+    color: red;
+}
+
 .btnagregar{
 	color: black;
 	font-weight: bold;	

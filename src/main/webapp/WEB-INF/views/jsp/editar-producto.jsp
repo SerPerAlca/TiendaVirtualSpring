@@ -11,7 +11,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="col-sm-6">
-			<form:form action="/productos" method="PUT" modelAttribute="producto" enctype="multipart/form-data">
+			<form:form action="/productosedicion" method="POST" modelAttribute="producto" enctype="multipart/form-data">
 			    <table class="table" id="tabla">
                     <tr>
                         <th> &nbsp </th>

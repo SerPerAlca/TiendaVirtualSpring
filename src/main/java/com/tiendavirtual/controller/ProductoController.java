@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+   TODO Intentar mandar la solicitud de edición de productos con método PUT url /productos.
+   de momento me la envía como POST aunque indique PUT en el method del form.
+ */
 @Controller
 public class ProductoController {
 
@@ -34,7 +37,7 @@ public class ProductoController {
         return "productos";
     }
 
-    @RequestMapping(value="/productoeliminado/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/eliminado/{id}", method=RequestMethod.GET)
     public String delete(@PathVariable int id) {
         productosService.delete(id);
         return "redirect:/productos/list";
@@ -67,11 +70,30 @@ public class ProductoController {
 
         return "editar-producto";
     }
-    @RequestMapping(value="/productos", method= RequestMethod.PUT)
+    @RequestMapping(value="/productosedicion", method= RequestMethod.POST)
     public String update(@ModelAttribute("producto") ProductoDto productoDto){
-        Producto producto = mapper.fromDtoToDomain(productoDto);
-        productosService.save(producto);
+        // Si en la edición del producto no se importa imagen:
+        if ( productoDto.getUrlImagen() == null){
+            int id = productoDto.getId();
+            Producto productAuxiliar = productosService.findById(id);
 
+            try{
+                Producto producto = mapper.fromDtoToDomainWhitoutImage(productoDto);
+                producto.setUrlImagen(productAuxiliar.getUrlImagen());
+                productosService.edit(producto);
+                return "redirect:/productos/list";
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        // Si en la edición del producto se importa imagen:
+        Producto producto = mapper.fromDtoToDomain(productoDto);
+        try{
+            productosService.edit(producto);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return "redirect:/productos/list";
     }
 
