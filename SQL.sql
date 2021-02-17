@@ -4,30 +4,28 @@ CREATE DATABASE diversa
 
 /* CREACIONES DE TABLAS */
 CREATE TABLE `usuarios` (
-    `id_usuario` INT (3) NOT NULL AUTO_INCREMENT,
+    `id` INT (3) NOT NULL AUTO_INCREMENT,
     `nombre_usuario` VARCHAR (20) NOT NULL,
     `apellido_usuario` VARCHAR (25) NOT NULL,
     `email_usuario` VARCHAR (30) NOT NULL,
     `contrasenia` VARCHAR (16) NOT NULL,
-    PRIMARY KEY (`id_usuario`)
+    PRIMARY KEY (`id`)
     )ENGINE=INNODB AUTO_INCREMENT=1;
 
-CREATE TABLE `trabajador` ( 
-    `id_trabajador`INT (3) NOT NULL AUTO_INCREMENT, 
-    `id_usuario` INT (100) NOT NULL, 
-    `num_TGSS` INT (16) NOT NULL, 
-    PRIMARY KEY (`id_trabajador`), 
-    FOREIGN KEY (`id_usuario`) REFERENCES usuarios(`id_usuario`)) 
-    ENGINE=INNODB AUTO_INCREMENT=1;
+CREATE TABLE `empleados` ( 
+    `id`INT (3) NOT NULL, 
+    `num_TGSS` VARCHAR (16) NOT NULL, 
+    PRIMARY KEY (`id`))
+    ENGINE=INNODB;
 
     CREATE TABLE `clientes` (
-    `id_cliente` INT (3) NOT NULL AUTO_INCREMENT,
-    `id_usuario` INT (100) NOT NULL,
+    `id` INT (3) NOT NULL AUTO_INCREMENT,
     `preferencias` VARCHAR (10) NOT NULL,
     `ultima_conexion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id_cliente`),
-    FOREIGN KEY (`id_usuario`) REFERENCES usuarios(`id_usuario`)) 
+    PRIMARY KEY (`id`))
     ENGINE=INNODB AUTO_INCREMENT=1;
+
+    
 
     CREATE TABLE `administrador`(
         `id_administrador` INT (1) NOT NULL AUTO_INCREMENT,
@@ -59,3 +57,5 @@ CREATE TABLE `trabajador` (
 
     /*-------------------------------------- Administrador ------------------------------------------------------------*/
     INSERT INTO `administrador` (email_administrador, contrasenia) VALUES ("serperalca@gmail.com", "Madriler_69");
+
+    ALTER TABLE `empleados` ADD CONSTRAINT `FK_USUARIO` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) 

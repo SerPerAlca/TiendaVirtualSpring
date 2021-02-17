@@ -9,13 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "clientes")
 public class ClienteEntity {
 
 	@Id
-	@Column(name="id_cliente")
+	@Column(name="id")
 	private int id;
 	
 	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH} )
@@ -26,12 +28,12 @@ public class ClienteEntity {
 	private String preferencias;
 
 	@Column(name="ultima_conexion")
-	private LocalGregorianCalendar.Date ultimaConexion;
+	private LocalDateTime ultimaConexion;
 	
 	public ClienteEntity() {}
 
 
-	public ClienteEntity(UserEntity userEntity, String preferencias, LocalGregorianCalendar.Date ultimaConexion) {
+	public ClienteEntity(UserEntity userEntity, String preferencias, LocalDateTime ultimaConexion) {
 		this.userEntity = userEntity;
 		this.preferencias = preferencias;
 		this.ultimaConexion = ultimaConexion;
@@ -45,11 +47,11 @@ public class ClienteEntity {
 		this.preferencias = preferencias;
 	}
 
-	public LocalGregorianCalendar.Date getUltimaConexion() {
+	public LocalDateTime getUltimaConexion() {
 		return ultimaConexion;
 	}
 
-	public void setUltimaConexion(LocalGregorianCalendar.Date ultimaConexion) {
+	public void setUltimaConexion(LocalDateTime ultimaConexion) {
 		this.ultimaConexion = ultimaConexion;
 	}
 

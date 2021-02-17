@@ -27,7 +27,7 @@
         var codigo = prompt("Introduzca código de administrador", "")
         if (codigo == "678479970"){
             alert("Bienvenido Admin");
-            window.location.href="/registro/empleado";
+            window.location.href="/empleados/list";
         } else {
             alert("¡Código incorrecto! \n Por favor, solo intente acceder si es administrador de la página");
         }

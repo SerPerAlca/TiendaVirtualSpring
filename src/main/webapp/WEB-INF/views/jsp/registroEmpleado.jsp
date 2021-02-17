@@ -11,7 +11,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="col-sm-6">
-			<form:form action="/registro/empleado" method="POST" modelAttribute="empleado" enctype="multipart/form-data">
+			<form:form action="/registro/empleado" method="POST" modelAttribute="empleado">
 				<div class="card-header">
 					<h3>Introduzca Datos del Nuevo Empleado</h3>
 				</div>
@@ -22,7 +22,7 @@
 					</div>
 					<div class="form-group">
 						<label><h5>Apellidos: </h5></label>
-						<form:input path="apellidos"/>
+						<form:input path="apellido"/>
 					</div>
 					<div class="form-group">
 						<p><label><h5>Email:</h5> </label></p>
@@ -30,11 +30,11 @@
 					</div>
 					<div class="form-group">
 						<p><label><h5> Contraseña: </h5></label></p>
-						<form: input path="password"/>
+						<form:input path="password"/>
 					</div>
 					<div class="form-group">
 						<p><label><h5> Número Seguridad Social: </h5></label></p>
-                        <form: input path="numTGSS"/>
+                        <form:input path="TGSS"/>
 					</div>
 				</div>
 				<div class="card-footer">

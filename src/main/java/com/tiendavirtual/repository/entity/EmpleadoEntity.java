@@ -1,48 +1,37 @@
 
 package com.tiendavirtual.repository.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "trabajador")
+@Table(name = "empleados")
 public class EmpleadoEntity {
 	
 	@Id
-	@Column(name="id_trabajador")
+	@Column(name="id")
 	private int id;
 
 	@Column(name="num_TGSS")
-	private int numTGSS;
+	private String numTGSS;
 
-	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH} )
-	@JoinColumn(name="id_usuario")
+	@OneToOne(mappedBy = "empleadoEntity", cascade=CascadeType.ALL)
 	private UserEntity userEntity;
-	
+
 	public EmpleadoEntity() {}
-	
-	
 
-	public EmpleadoEntity(UserEntity userEntity) {
-		
+	public UserEntity getUserEntity() {
+		return userEntity;
+	}
+
+	public void setUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
 
-	public EmpleadoEntity(int numTGSS, UserEntity userEntity) {
-		this.numTGSS = numTGSS;
-		this.userEntity = userEntity;
-	}
-
-	public int getNumTGSS() {
+	public String getNumTGSS() {
 		return numTGSS;
 	}
 
-	public void setNumTGSS(int numTGSS) {
+	public void setNumTGSS(String numTGSS) {
 		this.numTGSS = numTGSS;
 	}
 
@@ -54,19 +43,12 @@ public class EmpleadoEntity {
 		this.id = id;
 	}
 
-	public UserEntity getUserEntity() {
-		return userEntity;
-	}
-
-	public void setUserEntity(UserEntity userEntity) {
-		this.userEntity = userEntity;
-	}
 
 	@Override
 	public String toString() {
-		return "TrabajadorEntity [userEntity=" + userEntity + "]";
+		return "EmpleadoEntity{" +
+				"id=" + id +
+				", numTGSS='" + numTGSS + '\'' +
+				'}';
 	}
-	
-	
-	
 }
