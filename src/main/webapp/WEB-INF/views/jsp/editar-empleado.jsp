@@ -11,7 +11,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="col-sm-6">
-			<form:form action="/productosedicion" method="POST" modelAttribute="producto" enctype="multipart/form-data">
+			<form:form action="/empleadosEdicion" method="POST" modelAttribute="worker">
 			    <table class="table" id="tabla">
                     <tr>
                         <th> &nbsp </th>
@@ -21,7 +21,7 @@
                     <tr>
                         <td> ID: </td>
                         <td>
-                            ${producto.id}
+                            ${worker.id}
                         </td>
                         <td>
                             <div class="form-group">
@@ -32,56 +32,55 @@
                     <tr>
                         <td>Nombre: </td>
                         <td>
-                            ${producto.nombre}
+                            ${worker.nombre}
                         </td>
                         <td>
                             <div class="form-group">
                                 <form:input path="nombre" />
                             </div>
-                        </td>
+                        <td>
                     </tr>
                     <tr>
-                        <td>Precio: </td>
+                        <td>Apellidos: </td>
                         <td>
-                            ${producto.precio}
+                            ${worker.apellido}
                         </td>
                         <td>
                             <div class="form-group">
-                                <form:input path="precio" />
+                                <form:input path="apellido" />
+                            </div>
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td>
+                            ${worker.email}
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <form:input path="email" />
+                            </div>
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>Password: </td>
+                        <td>
+                            ${worker.password}
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <form:input path="password" />
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Descripción: </td>
+                        <td>Número Seguridad Social: </td>
                         <td>
-                            ${producto.descripcion}
+                            ${worker.TGSS}
                         </td>
                         <td>
                             <div class="form-group">
-                                <form:textarea path="descripcion" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Categoría:</td>
-                        <td>${producto.categoria}</td>
-                        <td>
-                            <div class="form-group">
-                                <p><h6>Telefonía</h6><form:radiobutton path="categoria" value="telefonía"/></p>
-                                <p><h6>Informática</h6><form:radiobutton path="categoria" value="informática"/></p>
-                                <p><h6>Imagen y Sonido</h6><form:radiobutton path="categoria" value="imagenysonido"/></p>
-                                <p><h6>Videojuegos</h6> <form:radiobutton path="categoria" value="videojuegos"/></p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Imagen: </td>
-                        <td>
-                            <img src="${pageContext.request.contextPath}${producto.urlImagen}" /></td>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <p><form:input type="file" path="imagen"/></p>
+                                <form:input path="TGSS" />
                             </div>
                         </td>
                     </tr>

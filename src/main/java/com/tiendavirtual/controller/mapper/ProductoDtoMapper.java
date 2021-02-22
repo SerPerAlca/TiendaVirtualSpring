@@ -16,6 +16,7 @@ public class ProductoDtoMapper {
         producto.setNombre(dto.getNombre());
         producto.setDescripcion(dto.getDescripcion());
         producto.setUrlImagen(dto.getImagen().getOriginalFilename());
+        producto.setId(dto.getId());
 
         try {
             producto.setImagen(dto.getImagen().getBytes());

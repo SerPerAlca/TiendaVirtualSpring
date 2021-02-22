@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,14 +25,7 @@ public class EmpleadoController {
 
 	@Autowired
 	private EmpleadoDtoMapper mapper;
-/*
-	@RequestMapping(value= "/listaruser", method= RequestMethod.GET)
-	public String listar(Model model) {
-		List<UserEntity> user =ius.findAll();
-		model.addAttribute("usuarios", user);
-		return "listar-usuarios";
-	}
-*/
+
 	@RequestMapping( value="/empleados/list", method = RequestMethod.GET)
 	public String listarEmpleados(Model model){
 		List<Empleado> listaEmpleados = userService.findAll();
@@ -46,7 +40,7 @@ public class EmpleadoController {
 	@RequestMapping(value="/empleados/formulario", method= RequestMethod.GET)
 	public String formularioEmpleado(Model model){
 		model.addAttribute("empleado", new EmpleadoDto());
-		return "registroEmpleado";
+		return "agregar-empleado";
 	}
 
 	@RequestMapping(value="/registro/empleado", method= RequestMethod.POST)
@@ -57,9 +51,30 @@ public class EmpleadoController {
 		return "redirect:/empleados/list";
 	}
 
-	@RequestMapping(value="/registro/cliente", method= RequestMethod.GET)
-	public String registroCliente(){
-		return "registroCliente";
+	@RequestMapping(value="/edicionado/empleado/{id}", method= RequestMethod.GET)
+	public String editarEmpleado(@PathVariable int id, Model model){
+		EmpleadoDto empleadoDto = new EmpleadoDto();
+		Empleado empleado = new Empleado();
+		empleado = userService.EmpleadofindById(id);
+		empleadoDto = mapper.fromDomainToDto(empleado);
+
+		model.addAttribute("worker", empleadoDto);
+		return "editar-empleado";
 	}
 
+	@RequestMapping(value="/empleadosEdicion", method= RequestMethod.POST)
+	public String updateEmpleado(@ModelAttribute("worker") EmpleadoDto empleadoDto){
+		Empleado empleado = new Empleado();
+		empleado = mapper.fromDtoToDomain(empleadoDto);
+		userService.edit(empleado);
+
+		return "redirect:/empleados/list";
+	}
+
+	@RequestMapping(value="/eliminado/empleado/{id}", method= RequestMethod.GET)
+	public String delete(@PathVariable int id){
+		userService.deleteEmpleado(id);
+		return "redirect:/empleados/list";
+
+	}
 }

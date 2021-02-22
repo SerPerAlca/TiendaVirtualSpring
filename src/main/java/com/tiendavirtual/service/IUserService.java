@@ -14,6 +14,8 @@ public interface IUserService {
 	public List<Empleado> findAll();
 	public Optional<Empleado> listarId(int id);
 	public void save(Empleado empleado);
-	public void delete(int id);
-	public UserEntity findById(int id);
+	public Empleado EmpleadofindById(int id);
+	public UserEntity UserfindById(int id);
+	public void edit(Empleado empleado);
+	public void deleteEmpleado(int id);
 }

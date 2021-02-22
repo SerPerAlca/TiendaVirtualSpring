@@ -22,6 +22,7 @@
 				<th>Apellido</th>
 				<th>Email</th>
 				<th>Numero TGSS</th>
+				<th> Editar </th>
 
 			</tr>
 		</thead>
@@ -33,6 +34,8 @@
 					<td>${worker.apellido}</td>
 					<td>${worker.email}</td>
 					<td>${worker.TGSS}</td>
+					<td><button type="button" class="btn btn-warning"><a class="btneditar" href="/edicionado/empleado/${worker.id}">Editar</a></button></td>
+					<td><button type="button" class="btn btn-danger"><a class="btneliminar" href="/eliminado/empleado/${worker.id}">Eliminar</a></button></td>
 				</tr>
 		</tbody>
 			</c:forEach>

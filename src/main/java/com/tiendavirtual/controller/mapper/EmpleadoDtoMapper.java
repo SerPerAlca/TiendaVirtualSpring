@@ -14,6 +14,7 @@ public class EmpleadoDtoMapper {
         empleado.setEmail(empleadoDto.getEmail());
         empleado.setPassword(empleadoDto.getPassword());
         empleado.setTGSS(empleadoDto.getTGSS());
+        empleado.setId(empleadoDto.getId());
         return empleado;
     }
 
@@ -24,6 +25,7 @@ public class EmpleadoDtoMapper {
          empleadoDto.setEmail(empleado.getEmail());
          empleadoDto.setPassword(empleado.getPassword());
          empleadoDto.setTGSS(empleado.getTGSS());
+         empleadoDto.setId(empleado.getId());
          return empleadoDto;
     }
 

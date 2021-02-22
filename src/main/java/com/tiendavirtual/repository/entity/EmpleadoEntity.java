@@ -14,7 +14,7 @@ public class EmpleadoEntity {
 	@Column(name="num_TGSS")
 	private String numTGSS;
 
-	@OneToOne(mappedBy = "empleadoEntity", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "empleadoEntity")
 	private UserEntity userEntity;
 
 	public EmpleadoEntity() {}

@@ -58,4 +58,5 @@ CREATE TABLE `empleados` (
     /*-------------------------------------- Administrador ------------------------------------------------------------*/
     INSERT INTO `administrador` (email_administrador, contrasenia) VALUES ("serperalca@gmail.com", "Madriler_69");
 
-    ALTER TABLE `empleados` ADD CONSTRAINT `FK_USUARIO` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) 
+    ALTER TABLE `empleados` ADD CONSTRAINT `FK_EMPLEADOS_USUARIOS` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) 
+    ALTER TABLE `clientes` ADD CONSTRAINT `FK_CLIENTES_USUARIOS` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)

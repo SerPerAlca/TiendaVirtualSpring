@@ -14,6 +14,7 @@ public class UsuarioEntityMapper {
         empleado.setApellido(userEntity.getApellido());
         empleado.setEmail(userEntity.getEmail());
         empleado.setPassword(userEntity.getPassword());
+        empleado.setId(userEntity.getId());
         empleado.setTGSS(userEntity.getEmpleadoEntity().getNumTGSS());
         return empleado;
     }
@@ -24,6 +25,7 @@ public class UsuarioEntityMapper {
         userEntity.setApellido(empleado.getApellido());
         userEntity.setEmail(empleado.getEmail());
         userEntity.setPassword(empleado.getPassword());
+        userEntity.setId(empleado.getId());
         return userEntity;
     }
 }

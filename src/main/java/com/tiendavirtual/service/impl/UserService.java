@@ -18,10 +18,13 @@ import com.tiendavirtual.repository.entity.UserEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserEntityService implements IUserService {
+public class UserService implements IUserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private EmpleadoRepository empleadoRepository;
 
 	@Autowired
 	private UsuarioEntityMapper mapper;
@@ -29,8 +32,7 @@ public class UserEntityService implements IUserService {
 	@Autowired
 	private EmpleadoEntityMapper mapperEmpleado;
 
-	@Autowired
-	private EmpleadoRepository empleadoRepository;
+
 
 	@Override
 	public List<Empleado> findAll() {
@@ -72,13 +74,63 @@ public class UserEntityService implements IUserService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void deleteEmpleado(int id) {
+		try{
+			empleadoRepository.deleteById(id);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Error al borrar empleado");
+		}
+
+		try{
+			userRepository.deleteById(id);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Error al borrar usuario");
+		}
 
 	}
 
 	@Override
-	public UserEntity findById(int id) {
-		UserEntity userEntity = userRepository.findById(id).get();
+	public Empleado EmpleadofindById(int id) {
+		Empleado empleado = new Empleado();
+		EmpleadoEntity empleadoEntity = new EmpleadoEntity();
+
+		empleadoEntity = empleadoRepository.findById(id).get();
+		empleado = mapperEmpleado.fromEntityToDomain(empleadoEntity);
+
+		return empleado;
+
+	}
+
+	@Override
+	public UserEntity UserfindById(int id) {
+		UserEntity userEntity = new UserEntity();
+		userEntity = userRepository.findById(id).get();
+
 		return userEntity;
 	}
+
+	@Override
+	public void edit(Empleado empleado) {
+		int id = empleado.getId();
+		EmpleadoEntity empleadoOriginal = empleadoRepository.findById(id).get();
+		UserEntity usuarioOriginal = userRepository.findById(id).get();
+		try{
+			empleadoOriginal.setNumTGSS(empleado.getTGSS());
+			empleadoRepository.save(empleadoOriginal);
+
+			usuarioOriginal.setId(empleado.getId());
+			usuarioOriginal.setNombre(empleado.getNombre());
+			usuarioOriginal.setApellido(empleado.getApellido());
+			usuarioOriginal.setEmail(empleado.getEmail());
+			usuarioOriginal.setPassword(empleado.getPassword());
+			userRepository.save(usuarioOriginal);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Error al editar registro");
+		}
+	}
+
+
 }

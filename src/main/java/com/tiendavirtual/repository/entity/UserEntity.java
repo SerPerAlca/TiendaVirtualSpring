@@ -23,7 +23,7 @@ public class UserEntity {
 	 @Column(name="contrasenia")
 	 private String password;
 
-	 @OneToOne(cascade=CascadeType.ALL)
+	 @OneToOne
 	 @JoinColumn(name="id", nullable = true, insertable = false, updatable = false)
 	 private EmpleadoEntity empleadoEntity;
 
