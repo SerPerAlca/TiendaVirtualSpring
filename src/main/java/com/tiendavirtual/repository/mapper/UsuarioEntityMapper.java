@@ -1,7 +1,9 @@
 package com.tiendavirtual.repository.mapper;
 
 import com.tiendavirtual.repository.entity.UserEntity;
+import com.tiendavirtual.service.domain.Cliente;
 import com.tiendavirtual.service.domain.Empleado;
+import com.tiendavirtual.service.domain.Usuario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +21,7 @@ public class UsuarioEntityMapper {
         return empleado;
     }
 
-    public UserEntity fromDomainToEntity ( Empleado empleado){
+    public UserEntity fromEmpleadoDomainToEntity(Empleado empleado){
         UserEntity userEntity = new UserEntity();
         userEntity.setNombre(empleado.getNombre());
         userEntity.setApellido(empleado.getApellido());
@@ -28,4 +30,15 @@ public class UsuarioEntityMapper {
         userEntity.setId(empleado.getId());
         return userEntity;
     }
+
+    public UserEntity fromClienteDomainToEntity (Cliente cliente){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setNombre(cliente.getNombre());
+        userEntity.setApellido(cliente.getApellido());
+        userEntity.setEmail(cliente.getEmail());
+        userEntity.setPassword(cliente.getPassword());
+        userEntity.setId(cliente.getId());
+        return userEntity;
+    }
+
 }

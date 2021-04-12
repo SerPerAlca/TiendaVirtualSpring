@@ -20,8 +20,7 @@ public class ClienteEntity {
 	@Column(name="id")
 	private int id;
 	
-	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH} )
-	@JoinColumn(name="id_usuario")
+	@OneToOne(mappedBy = "clienteEntity")
 	private UserEntity userEntity;
 
 	@Column(name="preferencias")

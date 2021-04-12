@@ -1,16 +1,22 @@
 package com.tiendavirtual.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
+import com.tiendavirtual.repository.ClienteRepository;
 import com.tiendavirtual.repository.EmpleadoRepository;
+import com.tiendavirtual.repository.entity.ClienteEntity;
 import com.tiendavirtual.repository.entity.EmpleadoEntity;
+import com.tiendavirtual.repository.mapper.ClienteEntityMapper;
 import com.tiendavirtual.repository.mapper.EmpleadoEntityMapper;
 import com.tiendavirtual.repository.mapper.UsuarioEntityMapper;
 import com.tiendavirtual.service.IUserService;
+import com.tiendavirtual.service.domain.Cliente;
 import com.tiendavirtual.service.domain.Empleado;
+import com.tiendavirtual.service.domain.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tiendavirtual.repository.UserRepository;
@@ -27,24 +33,53 @@ public class UserService implements IUserService {
 	private EmpleadoRepository empleadoRepository;
 
 	@Autowired
+	private ClienteRepository clienteRepository;
+
+	@Autowired
 	private UsuarioEntityMapper mapper;
 
 	@Autowired
 	private EmpleadoEntityMapper mapperEmpleado;
 
+	@Autowired
+	private ClienteEntityMapper mapperCliente;
 
+
+	@Override
+	public List<Cliente> findAllClient() {
+		List <Cliente> clientes = new ArrayList<>();
+		List <ClienteEntity> clienteEntidad;
+		clienteEntidad = clienteRepository.findAll();
+		for (ClienteEntity client: clienteEntidad){
+			Cliente clienteDomain = mapperCliente.fromEntityToDomain(client);
+			clientes.add(clienteDomain);
+		}
+		return clientes;
+	}
 
 	@Override
 	public List<Empleado> findAll() {
 		List<Empleado> empleados = new ArrayList<>();
-		List<UserEntity> userEntity = new ArrayList<>();
-
-		userEntity = userRepository.findAll();
-		for (UserEntity user: userEntity){
-			Empleado empleadoDomain = mapper.fromEntityToDomain(user);
+		List<EmpleadoEntity> empleadosAux;
+		empleadosAux = empleadoRepository.findAll();
+		for (EmpleadoEntity user: empleadosAux){
+			Empleado empleadoDomain = mapperEmpleado.fromEntityToDomain(user);
 			empleados.add(empleadoDomain);
 		}
 		return empleados;
+	}
+
+	//ESTE MÉTODO SEGURAMENTE LO BORRE AL USAR SPRING SECURITY
+	@Override
+	public Boolean Login(String nombre, String password) {
+		List<Cliente> clientes;
+		clientes = findAllClient();
+		for (Cliente cliente : clientes){
+			if(nombre.equals(cliente.getNombre()) && (password.equals(cliente.getPassword()))){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -53,10 +88,10 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void save(Empleado empleado) {
+	public void saveEmpleado(Empleado empleado) {
 		try{
 			EmpleadoEntity empleadoEntity = mapperEmpleado.fromDomainToEntity(empleado);
-			UserEntity userEntity = mapper.fromDomainToEntity(empleado);
+			UserEntity userEntity = mapper.fromEmpleadoDomainToEntity(empleado);
 
 			UserEntity userEntityAux = userRepository.save(userEntity);
 
@@ -69,6 +104,28 @@ public class UserService implements IUserService {
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Error al guardar usuario");
+		}
+
+	}
+
+	@Override
+	public void saveCliente(Cliente cliente) {
+
+		try{
+			ClienteEntity clienteEntity = mapperCliente.fromDomainToEntity(cliente);
+			UserEntity userEntity = mapper.fromClienteDomainToEntity(cliente);
+
+			UserEntity userEntityAux = userRepository.save(userEntity);
+
+			int id = userEntityAux.getId();
+			clienteEntity.setId(id);
+			clienteEntity.setUserEntity(userEntity);
+			cliente.setUltimaConexion(LocalDateTime.now());
+
+			clienteRepository.save(clienteEntity);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Error al salvar cliente");
 		}
 
 	}

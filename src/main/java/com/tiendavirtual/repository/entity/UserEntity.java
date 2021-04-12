@@ -27,6 +27,10 @@ public class UserEntity {
 	 @JoinColumn(name="id", nullable = true, insertable = false, updatable = false)
 	 private EmpleadoEntity empleadoEntity;
 
+	 @OneToOne
+	 @JoinColumn(name="id", nullable = true, insertable = false, updatable = false)
+	 private ClienteEntity clienteEntity;
+
 	 public UserEntity() {}
 	 
 	 
@@ -48,6 +52,13 @@ public class UserEntity {
 		}
 	}
 
+	public ClienteEntity getClienteEntity() {
+		return clienteEntity;
+	}
+
+	public void setClienteEntity(ClienteEntity clienteEntity) {
+		this.clienteEntity = clienteEntity;
+	}
 
 	public EmpleadoEntity getEmpleadoEntity() {
 		return empleadoEntity;

@@ -20,7 +20,7 @@ CREATE TABLE `empleados` (
 
     CREATE TABLE `clientes` (
     `id` INT (3) NOT NULL AUTO_INCREMENT,
-    `preferencias` VARCHAR (10) NOT NULL,
+    `preferencias` VARCHAR (20) NOT NULL,
     `ultima_conexion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`))
     ENGINE=INNODB AUTO_INCREMENT=1;

@@ -4,7 +4,6 @@ import com.tiendavirtual.controller.dto.EmpleadoDto;
 import com.tiendavirtual.controller.mapper.EmpleadoDtoMapper;
 import com.tiendavirtual.service.IUserService;
 import com.tiendavirtual.service.domain.Empleado;
-import com.tiendavirtual.service.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +36,7 @@ public class EmpleadoController {
 		model.addAttribute("empleados", listaEmpleadosDto);
 		return "empleados";
 	}
+
 	@RequestMapping(value="/empleados/formulario", method= RequestMethod.GET)
 	public String formularioEmpleado(Model model){
 		model.addAttribute("empleado", new EmpleadoDto());
@@ -47,7 +47,7 @@ public class EmpleadoController {
 	public String registroEmpleado(@ModelAttribute("worker") EmpleadoDto empleadoDto){
 
 		Empleado empleado = mapper.fromDtoToDomain(empleadoDto);
-		userService.save(empleado);
+		userService.saveEmpleado(empleado);
 		return "redirect:/empleados/list";
 	}
 
