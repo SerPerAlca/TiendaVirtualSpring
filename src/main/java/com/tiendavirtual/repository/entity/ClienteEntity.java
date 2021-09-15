@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+
+
 @Entity
 @Table(name = "clientes")
 public class ClienteEntity {
@@ -19,16 +21,16 @@ public class ClienteEntity {
 	@Id
 	@Column(name="id")
 	private int id;
-	
-	@OneToOne(mappedBy = "clienteEntity")
-	private UserEntity userEntity;
 
 	@Column(name="preferencias")
 	private String preferencias;
 
 	@Column(name="ultima_conexion")
 	private LocalDateTime ultimaConexion;
-	
+
+	@OneToOne(mappedBy = "clienteEntity")
+	private UserEntity userEntity;
+
 	public ClienteEntity() {}
 
 

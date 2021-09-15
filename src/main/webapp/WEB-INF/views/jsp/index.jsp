@@ -15,8 +15,9 @@
 	<a href="/listaruser">Mostrar usuarios</a>
 	<a href="/productos/list">Mostrar productos</a>
 	<a href="/formulario/cliente">Registro</a>
-	<a href="/login">Login</a>
+	<a href="/auth/login">Login</a>
 	<img src="${pageContext.request.contextPath}/public/images/admin.png" onclick="admin()" alt="Imagen Admin">
+
 
 <script>
     function admin(){

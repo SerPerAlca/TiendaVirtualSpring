@@ -45,10 +45,12 @@ public class UserService implements IUserService {
 	private ClienteEntityMapper mapperCliente;
 
 
+
 	@Override
 	public List<Cliente> findAllClient() {
 		List <Cliente> clientes = new ArrayList<>();
 		List <ClienteEntity> clienteEntidad;
+
 		clienteEntidad = clienteRepository.findAll();
 		for (ClienteEntity client: clienteEntidad){
 			Cliente clienteDomain = mapperCliente.fromEntityToDomain(client);
@@ -88,10 +90,10 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void saveEmpleado(Empleado empleado) {
+	public void saveEmpleado(Empleado empleadoDomain) {
 		try{
-			EmpleadoEntity empleadoEntity = mapperEmpleado.fromDomainToEntity(empleado);
-			UserEntity userEntity = mapper.fromEmpleadoDomainToEntity(empleado);
+			EmpleadoEntity empleadoEntity = mapperEmpleado.fromDomainToEntity(empleadoDomain);
+			UserEntity userEntity = mapper.fromEmpleadoDomainToEntity(empleadoDomain);
 
 			UserEntity userEntityAux = userRepository.save(userEntity);
 
@@ -112,6 +114,7 @@ public class UserService implements IUserService {
 	public void saveCliente(Cliente cliente) {
 
 		try{
+
 			ClienteEntity clienteEntity = mapperCliente.fromDomainToEntity(cliente);
 			UserEntity userEntity = mapper.fromClienteDomainToEntity(cliente);
 
@@ -166,6 +169,11 @@ public class UserService implements IUserService {
 		userEntity = userRepository.findById(id).get();
 
 		return userEntity;
+	}
+
+	@Override
+	public UserEntity findByNombre(String nombre) {
+		return userRepository.findByNombre(nombre);
 	}
 
 	@Override

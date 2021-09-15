@@ -10,6 +10,7 @@
 <body>
         <h3>Usuario y Contraseña Correctos, Bienvenido </h3>
 
+        <a href="/categorias/telefonia">Telefonía</a>
 </script>
 </body>
 </html>

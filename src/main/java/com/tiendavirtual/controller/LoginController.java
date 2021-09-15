@@ -13,8 +13,14 @@ public class LoginController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value="/login", method = RequestMethod.GET)
+    @RequestMapping(value="/auth/login", method = RequestMethod.GET)
     public String login(){ return "login";}
+
+
+
+
+
+
 
  /*   @RequestMapping(value="/login", method= RequestMethod.POST)
     public String comprobarLogin(@RequestParam String usuario, @RequestParam String password){

@@ -3,6 +3,7 @@ package com.tiendavirtual.repository.entity;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "empleados")
 public class EmpleadoEntity {

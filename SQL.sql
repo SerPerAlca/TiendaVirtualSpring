@@ -8,7 +8,7 @@ CREATE TABLE `usuarios` (
     `nombre_usuario` VARCHAR (20) NOT NULL,
     `apellido_usuario` VARCHAR (25) NOT NULL,
     `email_usuario` VARCHAR (30) NOT NULL,
-    `contrasenia` VARCHAR (16) NOT NULL,
+    `contrasenia` VARCHAR (60) NOT NULL,
     PRIMARY KEY (`id`)
     )ENGINE=INNODB AUTO_INCREMENT=1;
 

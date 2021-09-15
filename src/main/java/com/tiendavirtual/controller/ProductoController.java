@@ -80,7 +80,7 @@ public class ProductoController {
             try{
                 Producto producto = mapper.fromDtoToDomainWhitoutImage(productoDto);
                 producto.setUrlImagen(productAuxiliar.getUrlImagen());
-                productosService.edit(producto);
+                productosService.update(producto);
                 return "redirect:/productos/list";
 
             }catch (Exception e){
@@ -90,7 +90,7 @@ public class ProductoController {
         // Si en la edición del producto se importa imagen:
         Producto producto = mapper.fromDtoToDomain(productoDto);
         try{
-            productosService.edit(producto);
+            productosService.update(producto);
         }catch(Exception e){
             e.printStackTrace();
         }

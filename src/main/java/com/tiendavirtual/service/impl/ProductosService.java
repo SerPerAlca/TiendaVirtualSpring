@@ -58,11 +58,13 @@ public class ProductosService implements IProductosService {
         String rutaAbsoluta = directorioImagen.toFile().getAbsolutePath();
 
         try {
-            byte[] imagen = producto.getImagen();
-            Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + producto.getUrlImagen());
-            Files.write(rutaCompleta, imagen);
-            String url = "/public/images/" + producto.getUrlImagen();
-
+            String url = null;
+            if (producto.getImagen() != null) {
+                byte[] imagen = producto.getImagen();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + producto.getUrlImagen());
+                Files.write(rutaCompleta, imagen);
+                url = "/public/images/" + producto.getUrlImagen();
+            }
             ProductoEntity productoEntity = mapper.fromDomainToEntity(producto);
             productoEntity.setUrlImagen(url);
 
@@ -71,17 +73,6 @@ public class ProductosService implements IProductosService {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("No se ha podido almacenar archivo");
-        }
-    }
-    @Override
-    public void saveSinImagen(Producto producto) {
-        ProductoEntity productoEntity = mapper.fromDomainToEntity(producto);
-        try {
-            productosRepository.save(productoEntity);
-            System.out.println("Salvado sin imagen");
-        }catch (Exception e){
-            System.out.println("Error al intentar salvar sin imagen");
-            e.printStackTrace();
         }
     }
 
@@ -93,9 +84,7 @@ public class ProductosService implements IProductosService {
 
     public Producto findById(int id) {
         Producto producto = new Producto();
-        ProductoEntity productoEntity = new ProductoEntity();
-
-        productoEntity = productosRepository.findById(id).get();
+        ProductoEntity productoEntity = productosRepository.findById(id).get();
         producto = mapper.fromEntitytoDomain(productoEntity);
 
         return producto;
@@ -103,21 +92,18 @@ public class ProductosService implements IProductosService {
     }
 
     @Override
-    public void edit(Producto producto) {
+    public void update(Producto producto) {
        int id = producto.getId();
-       Producto product = findById(id);
-       product.setNombre(producto.getNombre());
-       product.setPrecio(producto.getPrecio());
-       product.setDescripcion(producto.getDescripcion());
-       product.setCategoria(producto.getCategoria());
-       product.setUrlImagen(producto.getUrlImagen());
-       if (producto.getImagen() == null){
-           saveSinImagen(product);
-       }else
-       save(product);
+
+       ProductoEntity productoEntity = productosRepository.findById(id).get();
+
+       productoEntity.setNombre(producto.getNombre());
+       productoEntity.setPrecio(producto.getPrecio());
+       productoEntity.setDescripcion(producto.getDescripcion());
+       productoEntity.setCategoria(producto.getCategoria());
+       productoEntity.setUrlImagen(producto.getUrlImagen());
+
+       productosRepository.save(productoEntity);
     }
-
-
-
 
 }

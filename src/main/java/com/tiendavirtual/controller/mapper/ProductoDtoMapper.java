@@ -15,7 +15,11 @@ public class ProductoDtoMapper {
         producto.setPrecio(dto.getPrecio());
         producto.setNombre(dto.getNombre());
         producto.setDescripcion(dto.getDescripcion());
-        producto.setUrlImagen(dto.getImagen().getOriginalFilename());
+
+        if (dto.getImagen() != null) {
+            producto.setUrlImagen(dto.getImagen().getOriginalFilename());
+        }
+
         producto.setId(dto.getId());
 
         try {
@@ -33,7 +37,7 @@ public class ProductoDtoMapper {
         producto.setDescripcion(dto.getDescripcion());
         return producto;
     }
-    public ProductoDto fromProductoToDto (Producto productoDomain){
+    public ProductoDto fromProductoToDto(Producto productoDomain){
         ProductoDto productoDto = new ProductoDto();
         productoDto.setNombre(productoDomain.getNombre());
         productoDto.setPrecio(productoDomain.getPrecio());
