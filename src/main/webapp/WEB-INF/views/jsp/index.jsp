@@ -9,9 +9,9 @@
 </head>
 <body>
 	<h1>Vista Index</h1>
-	
 
-	
+
+
 	<a href="/listaruser">Mostrar usuarios</a>
 	<a href="/productos/list">Mostrar productos</a>
 	<a href="/formulario/cliente">Registro</a>
